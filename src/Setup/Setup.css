@@ -48,6 +48,8 @@
   flex-grow: 1;
   border: none;
   outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .Setup .new-player button {
