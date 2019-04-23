@@ -10,7 +10,7 @@ class App extends Component {
   updateSetupState = state => {
     const tracking = (this.state.game && this.state.game.tracking) || {}
     state.players.forEach(player => {
-      tracking[player.id] = tracking[player.id] || new Array(21).map(v => 0);
+      tracking[player.id] = tracking[player.id] || new Array(21).fill(0);
     })
     const game = {...this.state.game, players: state.players, tracking}
     this.setState({ setup: state, game });

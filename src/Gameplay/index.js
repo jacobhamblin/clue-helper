@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Gameplay.css';
+import Cell from './Cell';
 
 class Gameplay extends Component {
   state = this.props.state;
@@ -36,10 +37,12 @@ class Gameplay extends Component {
   updateValue = (playerID, index) => {
     const { tracking } = this.state;
     const newTracking = {...tracking};
+
     newTracking[playerID][index] = (newTracking[playerID][index] + 1) % this.noteValues.length;
     this.setState({tracking: newTracking});
   }
   populateRowsOfType({offset, type}) {
+    const { tracking } = this.state;
     let rows = [];
     const sectionHeader = [<span className='header'>{type.charAt(0).toUpperCase() + type.slice(1)}</span>].concat(new Array(this.state.players.length));
     rows.push(<tr>{sectionHeader.map(el => <td>{el}</td>)}</tr>)
@@ -47,7 +50,15 @@ class Gameplay extends Component {
       let row = [];
       row.push(<td><span>{this[type][i]}</span></td>);
       for (let j = 0; j < this.state.players.length; j++) {
-        row.push(<td><div>cell</div></td>);
+        console.log(i + offset)
+        row.push(
+          <Cell
+            value={tracking[j][i + offset]}
+            updateValue={this.updateValue}
+            playerID={j}
+            index={i + offset}
+          />
+        );
       } 
       rows.push(<tr>{row}</tr>);
     }
