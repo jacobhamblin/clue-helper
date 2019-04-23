@@ -4,7 +4,6 @@
 
 .Game .return {
   cursor: pointer;
-  width: 100%;
   padding: 15px 0;
   background: linear-gradient(320deg,#ff785f 0,#ff2a45 50%,#a143be 100%);
   color: #282c34;

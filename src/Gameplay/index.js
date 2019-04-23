@@ -9,7 +9,7 @@ class Gameplay extends Component {
   }
   render() {
     return (
-      <div className='Game'>
+      <div className='Game offset-md-3 col-md-6 col-xs-12'>
         <div
           className='return'
           onClick={() => {this.returnToSetup()}}
