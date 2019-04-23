@@ -11,7 +11,6 @@ class App extends Component {
   updateGameState = state => this.setState({ game: state });
   toggleGameState = () => this.setState({ play: !this.state.play });
   render() {
-    console.log(this.state)
     const { game, play, setup } = this.state;
     return (
       <div className="App">

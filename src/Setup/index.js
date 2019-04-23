@@ -2,23 +2,34 @@ import React, { Component } from 'react';
 import './Setup.css';
 
 class Setup extends Component {
-  state = this.props.state || {newPlayerName: '', players: [], play: false};
+  state = this.props.state || {id: 0, newPlayerName: '', players: [], play: false};
   enterGame = () => {
     this.props.reportState(this.state);
     console.log(this.props)
     console.log(this.props.enterGame)
     this.props.enterGame();
   }
+  removePlayer = (id) => {
+    const {players} = this.state;
+    this.setState({players: players.filter(player => player.id != id)});
+  }
   getPlayersList = () => {
     return (
       <ul className='players-list'>
-        {this.state.players.map(player => <li>{player}</li>)}
+        {this.state.players.map(player => {
+          return (
+            <li>
+              <span>{player.name}</span>
+              <button onClick={() => {this.removePlayer(player.id)}}>x</button>
+            </li>
+          )
+        })}
       </ul>
     );
   }
   submitPlayer = () => {
-    const { newPlayerName, players } = this.state;
-    this.setState({players: [...players, newPlayerName], newPlayerName: ''})
+    const { id, newPlayerName, players } = this.state;
+    this.setState({players: [...players, {id, name: newPlayerName}], newPlayerName: '', id: id + 1})
   }
   render() {
     return (

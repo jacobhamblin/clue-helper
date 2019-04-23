@@ -12,6 +12,11 @@
   margin-bottom: 0;
 }
 
+.Setup .players-list li {
+  display: flex;
+  justify-content: space-between;
+}
+
 .Setup .new-player {
   display: flex;
   justify-content: space-around;
