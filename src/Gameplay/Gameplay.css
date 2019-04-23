@@ -14,8 +14,22 @@
 }
 
 .Game .tracker {
-  display: flex;
-  flex-flow: row;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.Game .tracker tr {
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.Game .tracker td {
+  padding: .625em;
+  text-align: center;
 }
 
 .Game .tracker .game-elements {
@@ -23,14 +37,16 @@
   flex-flow: column;
 }
 
-.Game .tracker .game-elements span {
+.Game .tracker span {
   padding: 10px;
   font-size: 16px;
 }
 
-.Game .tracker .game-elements span.header {
+.Game .tracker span.header {
   padding: 6px 10px;
   font-size: 22px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .Game .tracker .players {
