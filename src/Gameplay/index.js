@@ -60,12 +60,12 @@ class Gameplay extends Component {
         </td>,
       );
       for (let j = 0; j < this.state.players.length; j++) {
-        console.log(i + offset);
+        const playerID = this.state.players[j].id;
         row.push(
           <Cell
-            value={tracking[j][i + offset]}
+            value={tracking[playerID][i + offset]}
             updateValue={this.updateValue}
-            playerID={j}
+            playerID={playerID}
             index={i + offset}
           />,
         );
