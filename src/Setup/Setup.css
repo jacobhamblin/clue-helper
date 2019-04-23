@@ -1,0 +1,41 @@
+.Setup {
+  padding: 10px;
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.Setup .players-list {
+  margin-top: 10px;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.Setup .new-player {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 16px;
+}
+
+.Setup .new-player .player-name {
+  font-size: 16px;
+  background-color: white;
+  padding: 10px;
+  color: #333;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+}
+
+.Setup .new-player button {
+  background-color: white;
+  padding: 10px 20px;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
