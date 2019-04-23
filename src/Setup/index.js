@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Setup.css';
 
 class Setup extends Component {
-  state = {newPlayerName: '', players: [], play: false} || this.props.state;
+  state = this.props.state || {newPlayerName: '', players: [], play: false};
   enterGame = () => {
     this.props.reportState(this.state);
     console.log(this.props)
@@ -22,9 +22,10 @@ class Setup extends Component {
   }
   render() {
     return (
-      <div className='Setup'>
+      <div className='Setup offset-md-3 col-md-6 col-xs-12'>
         <div className='new-player'>
           <input
+            className='player-name'
             placeholder='player name'
             onChange={e => this.setState({newPlayerName: e.target.value})}
             onKeyPress={e => {if (e.key === 'Enter') this.submitPlayer()}}

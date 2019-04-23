@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './vendor/bootstrap-grid.min.css';
 import Setup from './Setup';
 import Game from './Gameplay';
 
 class App extends Component {
-  state = { game: undefined, play: false, setup: undefined };
+  state = this.props.state || { game: undefined, play: false, setup: undefined };
   updateSetupState = state => this.setState({ setup: state });
   updateGameState = state => this.setState({ game: state });
   toggleGameState = () => this.setState({ play: !this.state.play });
   render() {
+    console.log(this.state)
     const { game, play, setup } = this.state;
     return (
       <div className="App">
