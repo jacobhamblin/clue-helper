@@ -41,14 +41,15 @@ class Gameplay extends Component {
   }
   populateRowsOfType({offset, type}) {
     let rows = [];
-    rows.push([<span className='header'>{type.charAt(0).toUpperCase() + type.slice(1)}</span>].concat(new Array(this.state.players.length)));
+    const sectionHeader = [<span className='header'>{type.charAt(0).toUpperCase() + type.slice(1)}</span>].concat(new Array(this.state.players.length));
+    rows.push(<tr>{sectionHeader.map(el => <td>{el}</td>)}</tr>)
     for (let i = 0; i < this[type].length; i++) {
       let row = [];
-      row.push(<span>{this[type][i]}</span>);
+      row.push(<td><span>{this[type][i]}</span></td>);
       for (let j = 0; j < this.state.players.length; j++) {
-        row.push(<div>cell</div>);
+        row.push(<td><div>cell</div></td>);
       } 
-      rows.push(row);
+      rows.push(<tr>{row}</tr>);
     }
     return (
       <>
@@ -59,9 +60,9 @@ class Gameplay extends Component {
   populateBody() {
     const rowScaffolding = [{offset: 0, type: 'suspects'}, {offset: this.suspects.length, type: 'weapons'}, {offset: this.suspects.length + this.weapons.length, type: 'rooms'}];
     return (
-      <tbody>
+      <>
         {rowScaffolding.map(row => this.populateRowsOfType(row))}
-      </tbody>
+      </>
     );
   }
   render() {
@@ -75,10 +76,12 @@ class Gameplay extends Component {
           Return to Setup
         </div>
         <table className='tracker'>
-          <thead>
-            {[''].concat(playerNames).map(val => <td>{val}</td>)}
-          </thead>
-          {this.populateBody()}
+          <tbody>
+            <tr>
+              {[''].concat(playerNames).map(val => <td>{val}</td>)}
+            </tr>
+            {this.populateBody()}
+          </tbody>
         </table>
       </div>
     );
