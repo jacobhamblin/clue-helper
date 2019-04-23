@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/clue-helper/static/css/main.03080d30.chunk.css",
+    "main.js": "/clue-helper/static/js/main.f7503335.chunk.js",
+    "main.js.map": "/clue-helper/static/js/main.f7503335.chunk.js.map",
+    "runtime~main.js": "/clue-helper/static/js/runtime~main.fcd7e5db.js",
+    "runtime~main.js.map": "/clue-helper/static/js/runtime~main.fcd7e5db.js.map",
+    "static/js/2.b6fe4141.chunk.js": "/clue-helper/static/js/2.b6fe4141.chunk.js",
+    "static/js/2.b6fe4141.chunk.js.map": "/clue-helper/static/js/2.b6fe4141.chunk.js.map",
+    "index.html": "/clue-helper/index.html",
+    "precache-manifest.53e373569c4eeb5ea1ac1b498c3ec893.js": "/clue-helper/precache-manifest.53e373569c4eeb5ea1ac1b498c3ec893.js",
+    "service-worker.js": "/clue-helper/service-worker.js",
+    "static/css/main.03080d30.chunk.css.map": "/clue-helper/static/css/main.03080d30.chunk.css.map",
+    "static/media/logo.svg": "/clue-helper/static/media/logo.5d5d9eef.svg"
+  }
+}
