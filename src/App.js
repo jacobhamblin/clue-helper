@@ -4,7 +4,7 @@ import './App.css';
 import Setup from './Setup';
 import Game from './Gameplay';
 
-class App extends Component() {
+class App extends Component {
   state = { game: undefined, play: false, setup: undefined };
   updateSetupState = state => this.setState({ setup: state });
   updateGameState = state => this.setState({ game: state });
@@ -18,13 +18,13 @@ class App extends Component() {
             <Game
               state={game}
               reportState={this.updateGameState}
-              enterGame={this.toggleGameState}
+              returnToSetup={this.toggleGameState}
             />
           ) : (
             <Setup
               state={setup}
               reportState={this.updateSetupState}
-              returnToSetup={this.toggleGameState}
+              enterGame={this.toggleGameState}
             />
           )}
         </header>

@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import './Setup.css';
 
 class Setup extends Component {
-  state = {newPlayerName: '', players: []}
+  state = {newPlayerName: '', players: [], play: false} || this.props.state;
+  enterGame = () => {
+    this.props.reportState(this.state);
+    console.log(this.props)
+    console.log(this.props.enterGame)
+    this.props.enterGame();
+  }
   getPlayersList = () => {
     return (
       <ul className='players-list'>
@@ -32,6 +38,12 @@ class Setup extends Component {
           </button>
         </div>
         {this.getPlayersList()}
+        <div
+          className='play'
+          onClick={() => this.enterGame()}
+        >
+          Play   
+        </div>
       </div>
     )
   }
