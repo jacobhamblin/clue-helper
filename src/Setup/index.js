@@ -11,7 +11,7 @@ class Setup extends Component {
   }
   removePlayer = (id) => {
     const {players} = this.state;
-    this.setState({players: players.filter(player => player.id != id)});
+    this.setState({players: players.filter(player => player.id !== id)});
   }
   getPlayersList = () => {
     return (
