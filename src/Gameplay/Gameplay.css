@@ -13,6 +13,11 @@
   letter-spacing: .3rem;
 }
 
+.Game .tracker {
+  display: flex;
+  flex-flow: row;
+}
+
 .Game .tracker .game-elements {
   display: flex;
   flex-flow: column;
@@ -26,4 +31,9 @@
 .Game .tracker .game-elements span.header {
   padding: 6px 10px;
   font-size: 22px;
+}
+
+.Game .tracker .players {
+  display: flex;
+  flex-flow: column;
 }
