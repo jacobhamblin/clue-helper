@@ -63,6 +63,7 @@ class Gameplay extends Component {
         const playerID = this.state.players[j].id;
         row.push(
           <Cell
+            playerOrder={j}
             value={tracking[playerID][i + offset]}
             updateValue={this.updateValue}
             playerID={playerID}

@@ -1,3 +1,11 @@
 td.color {
   cursor: pointer;
 }
+
+td.color.even {
+  border-left: 1px solid #fff;
+}
+
+td.color.odd {
+  border-left: 1px dashed #fff;
+}
