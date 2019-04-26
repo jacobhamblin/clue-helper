@@ -92,7 +92,7 @@ class Gameplay extends Component {
           onClick={() => {
             this.returnToSetup();
           }}>
-          Return to Setup
+          Setup
         </div>
         <table className="tracker">
           <tbody>
