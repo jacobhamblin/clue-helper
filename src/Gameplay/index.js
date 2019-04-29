@@ -8,7 +8,7 @@ class Gameplay extends Component {
     'Mr. Green',
     'Prof. Plum',
     'Col. Mustard',
-    'Mrs. White',
+    'Mrs. Peacock',
     'Miss Scarlet',
     'Mrs. White',
   ];
