@@ -83,8 +83,14 @@ class Gameplay extends Component {
     ];
     return <>{rowScaffolding.map(row => this.populateRowsOfType(row))}</>;
   }
+  toggleVersion() {
+    const version = this.state.version == 'md' ? 'classic' : 'md';
+    this.setState({version,})
+  }
   render() {
-    const playerNames = this.state.players.map(player => player.name);
+    const { players, version } = this.state;
+    const playerNames = players.map(player => player.name);
+    const active = version == 'md' ? 'active' : '';
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div
@@ -93,6 +99,13 @@ class Gameplay extends Component {
             this.returnToSetup();
           }}>
           Setup
+        </div>
+        <div
+          className={`master-detective ${active}`}
+          onClick={() => {
+            this.toggleVersion();
+          }}>
+          MD
         </div>
         <table className="tracker">
           <tbody>
