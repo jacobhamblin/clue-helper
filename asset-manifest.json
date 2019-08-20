@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/clue-helper/static/css/main.ce0ef9a7.chunk.css",
-    "main.js": "/clue-helper/static/js/main.a4304b3e.chunk.js",
-    "main.js.map": "/clue-helper/static/js/main.a4304b3e.chunk.js.map",
+    "main.css": "/clue-helper/static/css/main.4204bef6.chunk.css",
+    "main.js": "/clue-helper/static/js/main.11e7c28b.chunk.js",
+    "main.js.map": "/clue-helper/static/js/main.11e7c28b.chunk.js.map",
     "runtime~main.js": "/clue-helper/static/js/runtime~main.fcd7e5db.js",
     "runtime~main.js.map": "/clue-helper/static/js/runtime~main.fcd7e5db.js.map",
     "static/js/2.b6fe4141.chunk.js": "/clue-helper/static/js/2.b6fe4141.chunk.js",
     "static/js/2.b6fe4141.chunk.js.map": "/clue-helper/static/js/2.b6fe4141.chunk.js.map",
     "index.html": "/clue-helper/index.html",
-    "precache-manifest.0121a8786d1df96f82e1aa20d70d9bff.js": "/clue-helper/precache-manifest.0121a8786d1df96f82e1aa20d70d9bff.js",
+    "precache-manifest.6fbb34698c2ae75cb7de44a396cfd315.js": "/clue-helper/precache-manifest.6fbb34698c2ae75cb7de44a396cfd315.js",
     "service-worker.js": "/clue-helper/service-worker.js",
-    "static/css/main.ce0ef9a7.chunk.css.map": "/clue-helper/static/css/main.ce0ef9a7.chunk.css.map",
-    "static/media/logo.svg": "/clue-helper/static/media/logo.5d5d9eef.svg"
+    "static/css/main.4204bef6.chunk.css.map": "/clue-helper/static/css/main.4204bef6.chunk.css.map"
   }
 }
