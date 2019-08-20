@@ -105,18 +105,17 @@ class Gameplay extends Component {
     return <>{rows}</>;
   }
   populateBody() {
-    const { version } = this.state;
     const rowScaffolding = ['Suspects', 'Weapons', 'Rooms'];
     return <>{rowScaffolding.map(row => this.populateRowsOfType(row))}</>;
   }
   toggleVersion() {
-    const version = this.state.version == 'MD' ? 'classic' : 'MD';
+    const version = this.state.version === 'MD' ? 'classic' : 'MD';
     this.setState({ version });
   }
   render() {
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
-    const active = version == 'MD' ? 'active' : '';
+    const active = version === 'MD' ? 'active' : '';
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div

@@ -3,8 +3,7 @@ import './Cell.css';
 
 const valToColor = ['inherit', '#ff785f', '#ff2a45', '#a143be'];
 
-function Cell({ memoryPos, playerID, playerOrder, updateValue, value }) {
-  const order = playerOrder > 0 ? (playerOrder % 2 == 0 ? 'even' : 'odd') : '';
+function Cell({ memoryPos, playerID, updateValue, value }) {
   return (
     <td
       className="color"
