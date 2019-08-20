@@ -7,14 +7,14 @@ import Game from './Gameplay';
 
 class App extends Component {
   state = this.props.state || {
-    game: undefined,
+    game: { version: 'classic' },
     play: false,
     setup: undefined,
   };
   updateSetupState = state => {
     const tracking = (this.state.game && this.state.game.tracking) || {};
     state.players.forEach(player => {
-      tracking[player.id] = tracking[player.id] || new Array(21).fill(0);
+      tracking[player.id] = tracking[player.id] || new Array(39).fill(0);
     });
     const game = { ...this.state.game, players: state.players, tracking };
     this.setState({ setup: state, game });

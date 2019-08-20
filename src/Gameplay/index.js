@@ -4,47 +4,74 @@ import Cell from './Cell';
 
 class Gameplay extends Component {
   state = this.props.state;
-  suspects = [
-    'Mr. Green',
-    'Prof. Plum',
-    'Col. Mustard',
-    'Mrs. Peacock',
-    'Miss Scarlet',
-    'Mrs. White',
+  classicSuspects = [
+    ['Mr. Green', 0],
+    ['Prof. Plum', 1],
+    ['Col. Mustard', 2],
+    ['Mrs. Peacock', 3],
+    ['Miss Scarlet', 4],
+    ['Mrs. White', 5],
   ];
-  weapons = ['Candlestick', 'Knife', 'Lead Pipe', 'Revolver', 'Rope', 'Wrench'];
-  rooms = [
-    'Conservatory',
-    'Lounge',
-    'Kitchen',
-    'Library',
-    'Hall',
-    'Study',
-    'Ballroom',
-    'Dining Room',
-    'Billiard Room',
+  MDSuspects = this.classicSuspects.concat([
+    ['Mme Rose', 6],
+    ['Sgt. Gray', 7],
+    ['M. Brunette', 8],
+    ['Miss Peach', 9],
+  ]);
+  classicWeapons = [
+    ['Candlestick', 10],
+    ['Knife', 11],
+    ['Lead Pipe', 12],
+    ['Revolver', 13],
+    ['Rope', 14],
+    ['Wrench', 15],
+  ];
+  MDWeapons = this.classicWeapons.concat([['Poison', 16], ['Horseshoe', 17]]);
+  classicRooms = [
+    ['Conservatory', 18],
+    ['Lounge', 19],
+    ['Kitchen', 20],
+    ['Library', 21],
+    ['Hall', 22],
+    ['Study', 23],
+    ['Ballroom', 24],
+    ['Dining Room', 25],
+    ['Billiard Room', 26],
+  ];
+  MDRooms = [
+    ['Courtyard', 27],
+    ['Gazebo', 28],
+    ['Drawing Room', 29],
+    ['Dining Room', 30],
+    ['Kitchen', 31],
+    ['Carriage House', 32],
+    ['Trophy Room', 33],
+    ['Conservatory', 34],
+    ['Studio', 35],
+    ['Billiard Room', 36],
+    ['Library', 37],
+    ['Fountain', 38],
   ];
   noteValues = [0, 1, 2, 3];
   returnToSetup = () => {
     this.props.reportState(this.state);
     this.props.returnToSetup();
   };
-  updateValue = (playerID, index) => {
+  updateValue = (playerID, memoryPos) => {
     const { tracking } = this.state;
     const newTracking = { ...tracking };
 
-    newTracking[playerID][index] =
-      (newTracking[playerID][index] + 1) % this.noteValues.length;
+    newTracking[playerID][memoryPos] =
+      (newTracking[playerID][memoryPos] + 1) % this.noteValues.length;
     this.setState({ tracking: newTracking });
   };
-  populateRowsOfType({ offset, type }) {
-    const { tracking } = this.state;
+  populateRowsOfType(type) {
+    const { tracking, version } = this.state;
+
     let rows = [];
-    const sectionHeader = [
-      <span className="header">
-        {type.charAt(0).toUpperCase() + type.slice(1)}
-      </span>,
-    ].concat(new Array(this.state.players.length));
+    const sectionHeader = [<span className="header">{type}</span>].concat(
+      new Array(this.state.players.length),
+    );
     rows.push(
       <tr>
         {sectionHeader.map(el => (
@@ -52,11 +79,13 @@ class Gameplay extends Component {
         ))}
       </tr>,
     );
-    for (let i = 0; i < this[type].length; i++) {
+    for (let i = 0; i < this[version + type].length; i++) {
       let row = [];
+      const label = this[version + type][i][0];
+      const memoryPos = this[version + type][i][1];
       row.push(
         <td>
-          <span>{this[type][i]}</span>
+          <span>{label}</span>
         </td>,
       );
       for (let j = 0; j < this.state.players.length; j++) {
@@ -64,10 +93,10 @@ class Gameplay extends Component {
         row.push(
           <Cell
             playerOrder={j}
-            value={tracking[playerID][i + offset]}
+            value={tracking[playerID][memoryPos]}
             updateValue={this.updateValue}
             playerID={playerID}
-            index={i + offset}
+            memoryPos={memoryPos}
           />,
         );
       }
@@ -76,21 +105,18 @@ class Gameplay extends Component {
     return <>{rows}</>;
   }
   populateBody() {
-    const rowScaffolding = [
-      { offset: 0, type: 'suspects' },
-      { offset: this.suspects.length, type: 'weapons' },
-      { offset: this.suspects.length + this.weapons.length, type: 'rooms' },
-    ];
+    const { version } = this.state;
+    const rowScaffolding = ['Suspects', 'Weapons', 'Rooms'];
     return <>{rowScaffolding.map(row => this.populateRowsOfType(row))}</>;
   }
   toggleVersion() {
-    const version = this.state.version == 'md' ? 'classic' : 'md';
-    this.setState({version,})
+    const version = this.state.version == 'MD' ? 'classic' : 'MD';
+    this.setState({ version });
   }
   render() {
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
-    const active = version == 'md' ? 'active' : '';
+    const active = version == 'MD' ? 'active' : '';
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div
