@@ -118,19 +118,21 @@ class Gameplay extends Component {
     const active = version === 'MD' ? 'active' : '';
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
-        <div
-          className="return"
-          onClick={() => {
-            this.returnToSetup();
-          }}>
-          Setup
-        </div>
-        <div
-          className={`master-detective ${active}`}
-          onClick={() => {
-            this.toggleVersion();
-          }}>
-          MD
+        <div className="top-row">
+          <div
+            className={`master-detective ${active}`}
+            onClick={() => {
+              this.toggleVersion();
+            }}>
+            MD
+          </div>
+          <div
+            className="return"
+            onClick={() => {
+              this.returnToSetup();
+            }}>
+            Setup
+          </div>
         </div>
         <table className="tracker">
           <tbody>
