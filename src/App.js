@@ -10,10 +10,15 @@ class App extends Component {
     play: false,
     setup: undefined,
   };
+  handler = {
+    get: (target, name) => {
+      return target.hasOwnProperty(name) ? target[name] : 0;
+    }
+  };
   updateSetupState = state => {
     const tracking = (this.state.game && this.state.game.tracking) || {};
     state.players.forEach(player => {
-      tracking[player.id] = tracking[player.id] || new Array(39).fill(0);
+      tracking[player.id] = tracking[player.id] || new Proxy({}, this.handler);
     });
     const game = { ...this.state.game, players: state.players, tracking };
     this.setState({ setup: state, game });

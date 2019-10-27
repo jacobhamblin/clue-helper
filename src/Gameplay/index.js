@@ -5,64 +5,64 @@ import Cell from './Cell';
 class Gameplay extends Component {
   state = this.props.state;
   classicSuspects = [
-    ['Mr. Green', 0],
-    ['Prof. Plum', 1],
-    ['Col. Mustard', 2],
-    ['Mrs. Peacock', 3],
-    ['Miss Scarlet', 4],
-    ['Mrs. White', 5],
+    'Mr. Green',
+    'Prof. Plum',
+    'Col. Mustard',
+    'Mrs. Peacock',
+    'Miss Scarlet',
+    'Mrs. White',
   ];
   MDSuspects = this.classicSuspects.concat([
-    ['Mme Rose', 6],
-    ['Sgt. Gray', 7],
-    ['M. Brunette', 8],
-    ['Miss Peach', 9],
+    'Mme Rose',
+    'Sgt. Gray',
+    'M. Brunette',
+    'Miss Peach',
   ]);
   classicWeapons = [
-    ['Candlestick', 10],
-    ['Knife', 11],
-    ['Lead Pipe', 12],
-    ['Revolver', 13],
-    ['Rope', 14],
-    ['Wrench', 15],
+    'Candlestick',
+    'Knife',
+    'Lead Pipe',
+    'Revolver',
+    'Rope',
+    'Wrench',
   ];
-  MDWeapons = this.classicWeapons.concat([['Poison', 16], ['Horseshoe', 17]]);
+  MDWeapons = this.classicWeapons.concat(['Poison', 'Horseshoe']);
   classicRooms = [
-    ['Conservatory', 18],
-    ['Lounge', 19],
-    ['Kitchen', 20],
-    ['Library', 21],
-    ['Hall', 22],
-    ['Study', 23],
-    ['Ballroom', 24],
-    ['Dining Room', 25],
-    ['Billiard Room', 26],
+    'Conservatory',
+    'Lounge',
+    'Kitchen',
+    'Library',
+    'Hall',
+    'Study',
+    'Ballroom',
+    'Dining Room',
+    'Billiard Room',
   ];
   MDRooms = [
-    ['Courtyard', 27],
-    ['Gazebo', 28],
-    ['Drawing Room', 29],
-    ['Dining Room', 30],
-    ['Kitchen', 31],
-    ['Carriage House', 32],
-    ['Trophy Room', 33],
-    ['Conservatory', 34],
-    ['Studio', 35],
-    ['Billiard Room', 36],
-    ['Library', 37],
-    ['Fountain', 38],
+    'Courtyard',
+    'Gazebo',
+    'Drawing Room',
+    'Dining Room',
+    'Kitchen',
+    'Carriage House',
+    'Trophy Room',
+    'Conservatory',
+    'Studio',
+    'Billiard Room',
+    'Library',
+    'Fountain',
   ];
   noteValues = [0, 1, 2, 3];
   returnToSetup = () => {
     this.props.reportState(this.state);
     this.props.returnToSetup();
   };
-  updateValue = (playerID, memoryPos) => {
+  updateValue = (playerID, label) => {
     const { tracking } = this.state;
     const newTracking = { ...tracking };
 
-    newTracking[playerID][memoryPos] =
-      (newTracking[playerID][memoryPos] + 1) % this.noteValues.length;
+    newTracking[playerID][label] =
+      (newTracking[playerID][label] + 1) % this.noteValues.length;
     this.setState({ tracking: newTracking });
   };
   populateRowsOfType(type) {
@@ -81,8 +81,7 @@ class Gameplay extends Component {
     );
     for (let i = 0; i < this[version + type].length; i++) {
       let row = [];
-      const label = this[version + type][i][0];
-      const memoryPos = this[version + type][i][1];
+      const label = this[version + type][i];
       row.push(
         <td>
           <span>{label}</span>
@@ -92,11 +91,10 @@ class Gameplay extends Component {
         const playerID = this.state.players[j].id;
         row.push(
           <Cell
-            playerOrder={j}
-            value={tracking[playerID][memoryPos]}
+            value={tracking[playerID][label]}
             updateValue={this.updateValue}
             playerID={playerID}
-            memoryPos={memoryPos}
+            label={label}
           />,
         );
       }
