@@ -52,6 +52,12 @@ class Gameplay extends Component {
     'Library',
     'Fountain',
   ];
+  customSuspects = [];
+  customWeapons = [];
+  customRooms = [];
+  newAsset = (type) => {
+    this.setState({editingAnAsset: type});
+  }
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
     this.props.reportState(this.state);
@@ -71,7 +77,7 @@ class Gameplay extends Component {
     let rows = [];
     const sectionHeader = [
       <>
-        <div className="addNew">+</div>
+        <div className="addNew" onClick={() => {this.newAsset(type)}}>+</div>
         <span className="header">{type}</span>
       </>
     ].concat(
@@ -84,9 +90,10 @@ class Gameplay extends Component {
         ))}
       </tr>,
     );
-    for (let i = 0; i < this[version + type].length; i++) {
+    const assets = this[version + type].concat(this['custom' + type]);
+    for (let i = 0; i < assets.length; i++) {
       let row = [];
-      const label = this[version + type][i];
+      const label = assets[i];
       row.push(
         <td>
           <span>{label}</span>
@@ -118,12 +125,14 @@ class Gameplay extends Component {
   render() {
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
-    const active = version === 'MD' ? 'active' : '';
+    const MDActive = version === 'MD' ? 'active' : '';
+    const modalActive = this.state.editingAnAsset ? 'active' : '';
+    const editingAsset = this.state.editingAnAsset && this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div className="top-row">
           <div
-            className={`master-detective ${active}`}
+            className={`master-detective ${MDActive}`}
             onClick={() => {
               this.toggleVersion();
             }}>
@@ -147,6 +156,14 @@ class Gameplay extends Component {
             {this.populateBody()}
           </tbody>
         </table>
+        <div
+          className={`modalBackground ${modalActive}`}
+          onClick={() => {this.setState({editingAnAsset: false})}}
+        >
+          <div className="newAsset">
+            <h4>{`Add new ${editingAsset}`}</h4>
+          </div>
+        </div>
       </div>
     );
   }
