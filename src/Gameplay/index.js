@@ -69,13 +69,18 @@ class Gameplay extends Component {
     const { tracking, version } = this.state;
 
     let rows = [];
-    const sectionHeader = [<span className="header">{type}</span>].concat(
+    const sectionHeader = [
+      <>
+        <div className="addNew">+</div>
+        <span className="header">{type}</span>
+      </>
+    ].concat(
       new Array(this.state.players.length),
     );
     rows.push(
       <tr>
         {sectionHeader.map(el => (
-          <td>{el}</td>
+          <td className="sectionHeader">{el}</td>
         ))}
       </tr>,
     );

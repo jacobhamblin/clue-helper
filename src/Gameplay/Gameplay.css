@@ -62,3 +62,17 @@
   font-weight: bold;
   color: #fff;
 }
+
+.Game .tracker td.sectionHeader {
+  display: inline-flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.Game .tracker td.sectionHeader .addNew {
+  padding: 6px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 27px;
+}
