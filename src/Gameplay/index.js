@@ -52,7 +52,7 @@ class Gameplay extends Component {
     'Library',
     'Fountain',
   ];
-  noteValues = [0, 1, 2, 3];
+  noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
     this.props.reportState(this.state);
     this.props.returnToSetup();
