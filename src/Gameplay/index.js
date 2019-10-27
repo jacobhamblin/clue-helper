@@ -64,15 +64,21 @@ class Gameplay extends Component {
   removeAsset = () => {
     const type = this.state.removeAssetType;
     const label = this.state.removeAssetLabel;
-    const lists =     [this['classic' + type], this['MD' + type], this['custom' + type]];
-    ['classic', 'MD', 'custom'].forEach(prefix => {this[prefix + type] = this[prefix + type].filter(
-      value => value !== label
-    )})
+    const lists = [
+      this['classic' + type],
+      this['MD' + type],
+      this['custom' + type],
+    ];
+    ['classic', 'MD', 'custom'].forEach(prefix => {
+      this[prefix + type] = this[prefix + type].filter(
+        value => value !== label,
+      );
+    });
     this.setState({
       removeAssetType: '',
       removeAssetLabel: '',
     });
-  }
+  };
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
     this.props.reportState(this.state);
@@ -115,7 +121,7 @@ class Gameplay extends Component {
       const label = assets[i];
       row.push(
         <td>
-          <div className='assetContainer'>
+          <div className="assetContainer">
             <div
               className="removeAsset"
               onClick={() => {
@@ -147,12 +153,14 @@ class Gameplay extends Component {
     return <>{rowScaffolding.map(row => this.populateRowsOfType(row))}</>;
   }
   submitNewAsset = () => {
-    this['custom' + this.state.editingAnAsset] = this['custom' + this.state.editingAnAsset].concat([this.state.newAsset]);
+    this['custom' + this.state.editingAnAsset] = this[
+      'custom' + this.state.editingAnAsset
+    ].concat([this.state.newAsset]);
     this.setState({
       editingAnAsset: false,
       newAsset: '',
     });
-  }
+  };
   toggleVersion() {
     const version = this.state.version === 'MD' ? 'classic' : 'MD';
     this.setState({ version });
@@ -161,15 +169,19 @@ class Gameplay extends Component {
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
     const MDActive = version === 'MD' ? 'active' : '';
-    const modalActive = this.state.editingAnAsset || this.state.removeAssetLabel ? 'active' : '';
+    const modalActive =
+      this.state.editingAnAsset || this.state.removeAssetLabel ? 'active' : '';
     const editingAsset =
       this.state.editingAnAsset &&
       this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
     const newAssetVisible = this.state.editingAnAsset ? 'active' : '';
     const removeAssetVisible = this.state.removeAssetLabel ? 'active' : '';
-    const removeAsset = 
+    const removeAsset =
       this.state.removeAssetType &&
-      this.state.removeAssetType.substr(0, this.state.removeAssetType.length - 1);
+      this.state.removeAssetType.substr(
+        0,
+        this.state.removeAssetType.length - 1,
+      );
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div className="top-row">
@@ -200,18 +212,24 @@ class Gameplay extends Component {
         </table>
         <div
           className={`modalBackground ${modalActive}`}
-          onClick={(e) => {
+          onClick={e => {
             if (!this.modalContents.contains(e.target)) {
-              this.setState({ editingAnAsset: false });
+              this.setState({
+                editingAnAsset: false,
+                removeAssetLabel: '',
+                removeAssetType: '',
+              });
             }
           }}>
-          <div className="modalContents" ref={node => (this.modalContents = node)}>
+          <div
+            className="modalContents"
+            ref={node => (this.modalContents = node)}>
             <div className={`newAsset ${newAssetVisible}`}>
               <h4>{`Add new ${editingAsset}`}</h4>
               <div className="inputContainer">
                 <input
                   type="text"
-                  onChange={(e) => {
+                  onChange={e => {
                     this.setState({ newAsset: e.target.value });
                   }}
                   value={this.state.newAsset}
@@ -219,9 +237,7 @@ class Gameplay extends Component {
                     if (e.key === 'Enter') this.submitNewAsset();
                   }}
                 />
-                <div
-                  className="submit"
-                  onClick={this.submitNewAsset}>
+                <div className="submit" onClick={this.submitNewAsset}>
                   OK
                 </div>
               </div>
@@ -229,14 +245,17 @@ class Gameplay extends Component {
             <div className={`removeAsset ${removeAssetVisible}`}>
               <h4>{`Remove ${removeAsset} ${this.state.removeAssetLabel}`}</h4>
               <div className="inputContainer">
-                <div
-                  className="submit"
-                  onClick={this.removeAsset}>
+                <div className="submit" onClick={this.removeAsset}>
                   Yes
                 </div>
                 <div
                   className="submit"
-                  onClick={() => {this.setState({removeAssetLabel: '', removeAssetType: ''})}}>
+                  onClick={() => {
+                    this.setState({
+                      removeAssetLabel: '',
+                      removeAssetType: '',
+                    });
+                  }}>
                   No
                 </div>
               </div>
