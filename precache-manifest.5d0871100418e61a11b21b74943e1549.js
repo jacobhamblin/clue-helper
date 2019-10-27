@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "64f94f851f48b5424034d11b787e5d0e",
+    "revision": "e05f0441edb1d875a5e2815097e2bb18",
     "url": "/clue-helper/index.html"
   },
   {
-    "revision": "bd42c2cc343ed7a2a7c0",
+    "revision": "3dd72e43f382e0db9be2",
     "url": "/clue-helper/static/css/main.734d35e9.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/clue-helper/static/js/2.1828f0ec.chunk.js"
   },
   {
-    "revision": "bd42c2cc343ed7a2a7c0",
-    "url": "/clue-helper/static/js/main.e42bf68e.chunk.js"
+    "revision": "3dd72e43f382e0db9be2",
+    "url": "/clue-helper/static/js/main.605454d5.chunk.js"
   },
   {
     "revision": "2e46b60787a60ce3fa7b",
