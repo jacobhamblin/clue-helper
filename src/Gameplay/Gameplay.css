@@ -95,19 +95,39 @@
   display: block;
 }
 
-.Game .modalBackground .newAsset {
+.Game .modalBackground .modalContents {
   width: 50%;
   margin: 100px auto 0 auto;
-  background-color: rgba(255, 255, 255, .3);
-  padding: 30px;
+  background: linear-gradient(320deg,#1c2a47 0,#282c34 50%,#24365b 100%);
+  padding: 50px;
 }
 
-.Game .modalBackground .newAsset .inputContainer {
+.Game .modalBackground .modalContents h4 {
+  margin-top: 0;
+}
+
+.Game .modalBackground .modalContents .newAsset {
+  display: none;
+}
+
+.Game .modalBackground .modalContents .newAsset.active {
+  display: block;
+}
+
+.Game .modalBackground .modalContents .removeAsset {
+  display: none;
+}
+
+.Game .modalBackground .modalContents .removeAsset.active {
+  display: block;
+}
+
+.Game .modalBackground .modalContents .inputContainer {
   display: flex;
   justify-content: center;
 }
 
-.Game .modalBackground .newAsset .inputContainer input {
+.Game .modalBackground .modalContents .inputContainer input {
   margin-left: 20px;
   line-height: 30px;
   font-size: 30px;
@@ -115,8 +135,23 @@
   letter-spacing: 4px;
 }
 
-.Game .modalBackground .newAsset .inputContainer .submit {
+.Game .modalBackground .modalContents .inputContainer .submit {
   margin-right: 20px;
   padding: 20px;
+  cursor: pointer;
+}
+
+.Game .tracker .assetContainer {
+  display: inline-flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.Game .tracker .assetContainer .removeAsset {
+  padding: 6px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1px;
   cursor: pointer;
 }

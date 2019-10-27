@@ -55,9 +55,24 @@ class Gameplay extends Component {
   customSuspects = [];
   customWeapons = [];
   customRooms = [];
-  newAsset = type => {
+  newAssetModal = type => {
     this.setState({ editingAnAsset: type });
   };
+  removeAssetModal = (type, label) => {
+    this.setState({ removeAssetType: type, removeAssetLabel: label });
+  };
+  removeAsset = () => {
+    const type = this.state.removeAssetType;
+    const label = this.state.removeAssetLabel;
+    const lists =     [this['classic' + type], this['MD' + type], this['custom' + type]];
+    ['classic', 'MD', 'custom'].forEach(prefix => {this[prefix + type] = this[prefix + type].filter(
+      value => value !== label
+    )})
+    this.setState({
+      removeAssetType: '',
+      removeAssetLabel: '',
+    });
+  }
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
     this.props.reportState(this.state);
@@ -80,7 +95,7 @@ class Gameplay extends Component {
         <div
           className="addNew"
           onClick={() => {
-            this.newAsset(type);
+            this.newAssetModal(type);
           }}>
           +
         </div>
@@ -104,7 +119,7 @@ class Gameplay extends Component {
             <div
               className="removeAsset"
               onClick={() => {
-                this.removeAsset(type, label);
+                this.removeAssetModal(type, label);
               }}>
               -
             </div>
@@ -146,10 +161,15 @@ class Gameplay extends Component {
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
     const MDActive = version === 'MD' ? 'active' : '';
-    const modalActive = this.state.editingAnAsset ? 'active' : '';
+    const modalActive = this.state.editingAnAsset || this.state.removeAssetLabel ? 'active' : '';
     const editingAsset =
       this.state.editingAnAsset &&
       this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
+    const newAssetVisible = this.state.editingAnAsset ? 'active' : '';
+    const removeAssetVisible = this.state.removeAssetLabel ? 'active' : '';
+    const removeAsset = 
+      this.state.removeAssetType &&
+      this.state.removeAssetType.substr(0, this.state.removeAssetType.length - 1);
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div className="top-row">
@@ -185,23 +205,40 @@ class Gameplay extends Component {
               this.setState({ editingAnAsset: false });
             }
           }}>
-          <div className="newAsset" ref={node => (this.modalContents = node)}>
-            <h4>{`Add new ${editingAsset}`}</h4>
-            <div className="inputContainer">
-              <input
-                type="text"
-                onChange={(e) => {
-                  this.setState({ newAsset: e.target.value });
-                }}
-                value={this.state.newAsset}
-                onKeyPress={e => {
-                  if (e.key === 'Enter') this.submitNewAsset();
-                }}
-              />
-              <div
-                className="submit"
-                onClick={this.submitNewAsset}>
-                OK
+          <div className="modalContents" ref={node => (this.modalContents = node)}>
+            <div className={`newAsset ${newAssetVisible}`}>
+              <h4>{`Add new ${editingAsset}`}</h4>
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    this.setState({ newAsset: e.target.value });
+                  }}
+                  value={this.state.newAsset}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') this.submitNewAsset();
+                  }}
+                />
+                <div
+                  className="submit"
+                  onClick={this.submitNewAsset}>
+                  OK
+                </div>
+              </div>
+            </div>
+            <div className={`removeAsset ${removeAssetVisible}`}>
+              <h4>{`Remove ${removeAsset} ${this.state.removeAssetLabel}`}</h4>
+              <div className="inputContainer">
+                <div
+                  className="submit"
+                  onClick={this.removeAsset}>
+                  Yes
+                </div>
+                <div
+                  className="submit"
+                  onClick={() => {this.setState({removeAssetLabel: '', removeAssetType: ''})}}>
+                  No
+                </div>
               </div>
             </div>
           </div>
