@@ -55,9 +55,9 @@ class Gameplay extends Component {
   customSuspects = [];
   customWeapons = [];
   customRooms = [];
-  newAsset = (type) => {
-    this.setState({editingAnAsset: type});
-  }
+  newAsset = type => {
+    this.setState({ editingAnAsset: type });
+  };
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
     this.props.reportState(this.state);
@@ -77,12 +77,16 @@ class Gameplay extends Component {
     let rows = [];
     const sectionHeader = [
       <>
-        <div className="addNew" onClick={() => {this.newAsset(type)}}>+</div>
+        <div
+          className="addNew"
+          onClick={() => {
+            this.newAsset(type);
+          }}>
+          +
+        </div>
         <span className="header">{type}</span>
-      </>
-    ].concat(
-      new Array(this.state.players.length),
-    );
+      </>,
+    ].concat(new Array(this.state.players.length));
     rows.push(
       <tr>
         {sectionHeader.map(el => (
@@ -96,7 +100,16 @@ class Gameplay extends Component {
       const label = assets[i];
       row.push(
         <td>
-          <span>{label}</span>
+          <div className='assetContainer'>
+            <div
+              className="removeAsset"
+              onClick={() => {
+                this.removeAsset(type, label);
+              }}>
+              -
+            </div>
+            <span>{label}</span>
+          </div>
         </td>,
       );
       for (let j = 0; j < this.state.players.length; j++) {
@@ -118,6 +131,13 @@ class Gameplay extends Component {
     const rowScaffolding = ['Suspects', 'Weapons', 'Rooms'];
     return <>{rowScaffolding.map(row => this.populateRowsOfType(row))}</>;
   }
+  submitNewAsset = () => {
+    this['custom' + this.state.editingAnAsset] = this['custom' + this.state.editingAnAsset].concat([this.state.newAsset]);
+    this.setState({
+      editingAnAsset: false,
+      newAsset: '',
+    });
+  }
   toggleVersion() {
     const version = this.state.version === 'MD' ? 'classic' : 'MD';
     this.setState({ version });
@@ -127,7 +147,9 @@ class Gameplay extends Component {
     const playerNames = players.map(player => player.name);
     const MDActive = version === 'MD' ? 'active' : '';
     const modalActive = this.state.editingAnAsset ? 'active' : '';
-    const editingAsset = this.state.editingAnAsset && this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
+    const editingAsset =
+      this.state.editingAnAsset &&
+      this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
     return (
       <div className="Game offset-md-3 col-md-6 col-xs-12">
         <div className="top-row">
@@ -158,10 +180,30 @@ class Gameplay extends Component {
         </table>
         <div
           className={`modalBackground ${modalActive}`}
-          onClick={() => {this.setState({editingAnAsset: false})}}
-        >
-          <div className="newAsset">
+          onClick={(e) => {
+            if (!this.modalContents.contains(e.target)) {
+              this.setState({ editingAnAsset: false });
+            }
+          }}>
+          <div className="newAsset" ref={node => (this.modalContents = node)}>
             <h4>{`Add new ${editingAsset}`}</h4>
+            <div className="inputContainer">
+              <input
+                type="text"
+                onChange={(e) => {
+                  this.setState({ newAsset: e.target.value });
+                }}
+                value={this.state.newAsset}
+                onKeyPress={e => {
+                  if (e.key === 'Enter') this.submitNewAsset();
+                }}
+              />
+              <div
+                className="submit"
+                onClick={this.submitNewAsset}>
+                OK
+              </div>
+            </div>
           </div>
         </div>
       </div>

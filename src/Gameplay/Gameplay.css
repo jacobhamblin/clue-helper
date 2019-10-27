@@ -94,3 +94,29 @@
 .Game .modalBackground.active {
   display: block;
 }
+
+.Game .modalBackground .newAsset {
+  width: 50%;
+  margin: 100px auto 0 auto;
+  background-color: rgba(255, 255, 255, .3);
+  padding: 30px;
+}
+
+.Game .modalBackground .newAsset .inputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.Game .modalBackground .newAsset .inputContainer input {
+  margin-left: 20px;
+  line-height: 30px;
+  font-size: 30px;
+  padding: 5px 20px;
+  letter-spacing: 4px;
+}
+
+.Game .modalBackground .newAsset .inputContainer .submit {
+  margin-right: 20px;
+  padding: 20px;
+  cursor: pointer;
+}
