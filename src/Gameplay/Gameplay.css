@@ -170,3 +170,12 @@
     margin-right: 0;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .Game .tracker .assetContainer .removeAsset {
+    font-size: 10px;  
+  }
+  .Game .tracker {
+    font-size: 10px;
+  }
+}

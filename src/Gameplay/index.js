@@ -127,7 +127,7 @@ class Gameplay extends Component {
               onClick={() => {
                 this.removeAssetModal(type, label);
               }}>
-              -
+              x
             </div>
             <span>{label}</span>
           </div>
