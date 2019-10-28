@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/clue-helper/static/css/main.734d35e9.chunk.css",
+    "main.css": "/clue-helper/static/css/main.17debe3b.chunk.css",
     "main.js": "/clue-helper/static/js/main.605454d5.chunk.js",
     "main.js.map": "/clue-helper/static/js/main.605454d5.chunk.js.map",
     "runtime~main.js": "/clue-helper/static/js/runtime~main.fcd7e5db.js",
@@ -8,8 +8,8 @@
     "static/js/2.1828f0ec.chunk.js": "/clue-helper/static/js/2.1828f0ec.chunk.js",
     "static/js/2.1828f0ec.chunk.js.map": "/clue-helper/static/js/2.1828f0ec.chunk.js.map",
     "index.html": "/clue-helper/index.html",
-    "precache-manifest.5d0871100418e61a11b21b74943e1549.js": "/clue-helper/precache-manifest.5d0871100418e61a11b21b74943e1549.js",
+    "precache-manifest.dacabf9dcdd7c91a80775cb56c349ac8.js": "/clue-helper/precache-manifest.dacabf9dcdd7c91a80775cb56c349ac8.js",
     "service-worker.js": "/clue-helper/service-worker.js",
-    "static/css/main.734d35e9.chunk.css.map": "/clue-helper/static/css/main.734d35e9.chunk.css.map"
+    "static/css/main.17debe3b.chunk.css.map": "/clue-helper/static/css/main.17debe3b.chunk.css.map"
   }
 }
