@@ -97,7 +97,7 @@
 
 .Game .modalBackground .modalContents {
   width: 50%;
-  min-width: 550px;
+  min-width: 370px;
   margin: 100px auto 0 auto;
   background: linear-gradient(320deg,#1c2a47 0,#282c34 50%,#24365b 100%);
   padding: 50px;
@@ -126,6 +126,7 @@
 .Game .modalBackground .modalContents .inputContainer {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .Game .modalBackground .modalContents .inputContainer input {
@@ -163,6 +164,7 @@
   }
   .Game .modalBackground .modalContents .newAsset input {
     margin-left: 0;
+    width: 100%;
   }
   .Game .modalBackground .modalContents .newAsset .submit {
     margin-right: 0;
