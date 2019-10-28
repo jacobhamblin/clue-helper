@@ -97,6 +97,7 @@
 
 .Game .modalBackground .modalContents {
   width: 50%;
+  min-width: 550px;
   margin: 100px auto 0 auto;
   background: linear-gradient(320deg,#1c2a47 0,#282c34 50%,#24365b 100%);
   padding: 50px;
@@ -154,4 +155,16 @@
   color: #fff;
   line-height: 1px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .Game .tracker .assetContainer .removeAsset {
+    padding: 6px 4px;
+  }
+  .Game .modalBackground .modalContents .newAsset input {
+    margin-left: 0;
+  }
+  .Game .modalBackground .modalContents .newAsset .submit {
+    margin-right: 0;
+  }
 }
