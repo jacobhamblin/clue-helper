@@ -44,6 +44,17 @@ class Setup extends Component {
     });
   };
   render() {
+    const play = this.state.players.length
+      ? (
+        <div className="play" onClick={() => this.enterGame()}>
+          Play
+        </div>
+      ) : (
+        <div className="play disabled">
+          Play
+        </div>
+      );
+
     return (
       <div className="Setup offset-md-3 col-md-6 col-xs-12">
         <div className="new-player">
@@ -63,9 +74,7 @@ class Setup extends Component {
           </button>
         </div>
         {this.getPlayersList()}
-        <div className="play" onClick={() => this.enterGame()}>
-          Play
-        </div>
+        {play}
       </div>
     );
   }

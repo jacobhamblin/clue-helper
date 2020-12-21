@@ -82,3 +82,9 @@
   letter-spacing: .3rem;
   line-height: 18px;
 }
+
+.Setup .play.disabled {
+  background: #666;
+  color: #ddd;
+  cursor: not-allowed;
+}

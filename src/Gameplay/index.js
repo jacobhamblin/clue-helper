@@ -4,6 +4,7 @@ import Cell from './Cell';
 
 class Gameplay extends Component {
   state = this.props.state;
+  reportState = this.props.reportState;
   classicSuspects = [
     'Mr. Green',
     'Prof. Plum',
@@ -56,10 +57,10 @@ class Gameplay extends Component {
   customWeapons = [];
   customRooms = [];
   newAssetModal = type => {
-    this.setState({ editingAnAsset: type });
+    this.setState({ editingAnAsset: type }, this.reportState(this.state));
   };
   removeAssetModal = (type, label) => {
-    this.setState({ removeAssetType: type, removeAssetLabel: label });
+    this.setState({ removeAssetType: type, removeAssetLabel: label }, this.reportState);
   };
   removeAsset = () => {
     const type = this.state.removeAssetType;
@@ -77,11 +78,11 @@ class Gameplay extends Component {
     this.setState({
       removeAssetType: '',
       removeAssetLabel: '',
-    });
+    }, this.reportState(this.state));
   };
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
-    this.props.reportState(this.state);
+    this.reportState(this.state);
     this.props.returnToSetup();
   };
   updateValue = (playerID, label) => {
@@ -90,7 +91,7 @@ class Gameplay extends Component {
 
     newTracking[playerID][label] =
       (newTracking[playerID][label] + 1) % this.noteValues.length;
-    this.setState({ tracking: newTracking });
+    this.setState({ tracking: newTracking }, this.reportState(this.state));
   };
   populateRowsOfType(type) {
     const { tracking, version } = this.state;
@@ -159,13 +160,14 @@ class Gameplay extends Component {
     this.setState({
       editingAnAsset: false,
       newAsset: '',
-    });
+    }, this.reportState(this.state));
   };
-  toggleVersion() {
+  toggleVersion = () => {
     const version = this.state.version === 'MD' ? 'classic' : 'MD';
-    this.setState({ version });
+    this.setState({ version }, this.reportState(this.state));
   }
   render() {
+    console.log(localStorage.getItem("CLUE_STATE"))
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
     const MDActive = version === 'MD' ? 'active' : '';
@@ -218,7 +220,7 @@ class Gameplay extends Component {
                 editingAnAsset: false,
                 removeAssetLabel: '',
                 removeAssetType: '',
-              });
+              }, this.reportState(this.state));
             }
           }}>
           <div
@@ -254,7 +256,7 @@ class Gameplay extends Component {
                     this.setState({
                       removeAssetLabel: '',
                       removeAssetType: '',
-                    });
+                    }, this.reportState(this.state));
                   }}>
                   No
                 </div>
