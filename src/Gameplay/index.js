@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withSnackbar } from "react-simple-snackbar";
 import "./Gameplay.css";
 import Cell from "./Cell";
 
@@ -59,6 +60,13 @@ class Gameplay extends Component {
   confirmReset = () => {
     const newState = { ...this.state, resetting: true };
     this.setState(newState, this.reportState(newState));
+  };
+  shareState = () => {
+    const { openSnackbar } = this.props;
+    this.hiddenInput.select();
+    this.hiddenInput.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    openSnackbar("Shareable URL copied!", 3000);
   };
   newAssetModal = (type) => {
     const newState = { ...this.state, editingAnAsset: type };
@@ -226,6 +234,14 @@ class Gameplay extends Component {
             Setup
           </div>
           <div
+            className={`share-state`}
+            onClick={() => {
+              this.shareState();
+            }}
+          >
+            Share
+          </div>
+          <div
             className={`reset-state`}
             onClick={() => {
               this.confirmReset();
@@ -324,9 +340,16 @@ class Gameplay extends Component {
             </div>
           </div>
         </div>
+        <input
+          className="hidden"
+          ref={(node) => (this.hiddenInput = node)}
+          value={`https://jacobhamblin.github.io/clue-helper?state=${btoa(
+            JSON.stringify(this.props.getAllState())
+          )}`}
+        />
       </div>
     );
   }
 }
 
-export default Gameplay;
+export default withSnackbar(Gameplay);

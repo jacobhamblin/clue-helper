@@ -1,7 +1,9 @@
 .Game {
   padding: 10px;
   font-size: 16px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 200px;
 }
 
 .Game .top-row {
@@ -29,6 +31,15 @@
 }
 
 .Game .master-detective.active {
+  background: #ff2a45;
+}
+
+.Game .share-state {
+  cursor: pointer;
+  color: #ccc;
+  font-weight: bold;
+  line-height: 18px;
+  padding: 15px;
   background: #ff2a45;
 }
 
@@ -187,4 +198,8 @@
   .Game .tracker {
     font-size: 10px;
   }
+}
+
+input.hidden {
+  opacity: 0;
 }

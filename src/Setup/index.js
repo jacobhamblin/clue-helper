@@ -10,12 +10,16 @@ class Setup extends Component {
     play: false,
   };
   enterGame = () => {
-    this.props.reportState(this.state);
+    this.reportState(this.state);
     this.props.enterGame();
   };
   removePlayer = (id) => {
     const { players } = this.state;
-    this.setState({ players: players.filter((player) => player.id !== id) });
+    const newState = {
+      ...this.state,
+      players: players.filter((player) => player.id !== id),
+    };
+    this.setState(newState, this.reportState(newState));
   };
   getPlayersList = () => {
     return (
@@ -39,11 +43,13 @@ class Setup extends Component {
   };
   submitPlayer = () => {
     const { id, newPlayerName, players } = this.state;
-    this.setState({
+    const newState = {
+      ...this.state,
       players: [...players, { id, name: newPlayerName }],
       newPlayerName: "",
       id: id + 1,
-    });
+    };
+    this.setState(newState, this.reportState(newState));
   };
   render() {
     const play = this.state.players.length ? (
@@ -60,7 +66,13 @@ class Setup extends Component {
           <input
             className="player-name"
             placeholder="player name"
-            onChange={(e) => this.setState({ newPlayerName: e.target.value })}
+            onChange={(e) => {
+              const newState = {
+                ...this.state,
+                newPlayerName: e.target.value,
+              };
+              this.setState(newState, this.reportState(newState));
+            }}
             onKeyPress={(e) => {
               if (e.key === "Enter") this.submitPlayer();
             }}
