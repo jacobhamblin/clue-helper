@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/clue-helper/static/css/main.cc858522.chunk.css",
-    "main.js": "/clue-helper/static/js/main.7b4f09f9.chunk.js",
-    "main.js.map": "/clue-helper/static/js/main.7b4f09f9.chunk.js.map",
-    "runtime~main.js": "/clue-helper/static/js/runtime~main.fcd7e5db.js",
-    "runtime~main.js.map": "/clue-helper/static/js/runtime~main.fcd7e5db.js.map",
-    "static/js/2.64d3f784.chunk.js": "/clue-helper/static/js/2.64d3f784.chunk.js",
-    "static/js/2.64d3f784.chunk.js.map": "/clue-helper/static/js/2.64d3f784.chunk.js.map",
+    "main.css": "/clue-helper/static/css/main.3bc374b3.chunk.css",
+    "main.js": "/clue-helper/static/js/main.eb41a9ea.chunk.js",
+    "main.js.map": "/clue-helper/static/js/main.eb41a9ea.chunk.js.map",
+    "runtime-main.js": "/clue-helper/static/js/runtime-main.34b00b2d.js",
+    "runtime-main.js.map": "/clue-helper/static/js/runtime-main.34b00b2d.js.map",
+    "static/js/2.b573f76d.chunk.js": "/clue-helper/static/js/2.b573f76d.chunk.js",
+    "static/js/2.b573f76d.chunk.js.map": "/clue-helper/static/js/2.b573f76d.chunk.js.map",
     "index.html": "/clue-helper/index.html",
-    "precache-manifest.07cc98dd1d6276235a0dc4c1a25e95d0.js": "/clue-helper/precache-manifest.07cc98dd1d6276235a0dc4c1a25e95d0.js",
-    "service-worker.js": "/clue-helper/service-worker.js",
-    "static/css/main.cc858522.chunk.css.map": "/clue-helper/static/css/main.cc858522.chunk.css.map"
-  }
+    "static/css/main.3bc374b3.chunk.css.map": "/clue-helper/static/css/main.3bc374b3.chunk.css.map",
+    "static/js/2.b573f76d.chunk.js.LICENSE.txt": "/clue-helper/static/js/2.b573f76d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34b00b2d.js",
+    "static/js/2.b573f76d.chunk.js",
+    "static/css/main.3bc374b3.chunk.css",
+    "static/js/main.eb41a9ea.chunk.js"
+  ]
 }
