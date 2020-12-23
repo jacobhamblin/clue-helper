@@ -178,9 +178,6 @@ class Gameplay extends Component {
     this.setState({ version }, this.reportState(this.state));
   };
   render() {
-    console.log(localStorage.getItem("CLUE_STATE"));
-    console.log("this.state");
-    console.log(this.state);
     const { players, version } = this.state;
     const playerNames = players.map((player) => player.name);
     const MDActive = version === "MD" ? "active" : "";
