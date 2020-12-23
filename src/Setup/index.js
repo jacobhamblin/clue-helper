@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Setup.css';
 
 class Setup extends Component {
+  reportState = this.props.reportState;
   state = this.props.state || {
     id: 0,
     newPlayerName: '',

@@ -8,20 +8,19 @@ import Game from './Gameplay';
 const STORAGE_KEY = 'CLUE_STATE';
 
 class App extends Component {
-  state = this.props.state || localStorage.getItem(STORAGE_KEY) || {
+  state = this.props.state || {
     game: { version: 'classic' },
     play: false,
     setup: undefined,
   };
-  handler = {
-    get: (target, name) => {
-      return target.hasOwnProperty(name) ? target[name] : 0;
-    }
-  };
+  componentDidMount() {
+    const existingState = localStorage.getItem(STORAGE_KEY);
+    if (existingState) this.setState(JSON.parse(existingState));
+  }
   updateSetupState = state => {
     const tracking = (this.state.game && this.state.game.tracking) || {};
     state.players.forEach(player => {
-      tracking[player.id] = tracking[player.id] || new Proxy({}, this.handler);
+      tracking[player.id] = tracking[player.id] || {};
     });
     const game = { ...this.state.game, players: state.players, tracking };
     this.setState({ setup: state, game }, this.updateStorage);
@@ -32,7 +31,7 @@ class App extends Component {
     console.log(this.state)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state))
   }, 500);
-  toggleGameState = () => this.setState({ play: !this.state.play });
+  toggleGameState = () => this.setState({ play: !this.state.play }, this.updateStorage);
   render() {
     const { game, play, setup } = this.state;
     return (

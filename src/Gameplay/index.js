@@ -60,7 +60,7 @@ class Gameplay extends Component {
     this.setState({ editingAnAsset: type }, this.reportState(this.state));
   };
   removeAssetModal = (type, label) => {
-    this.setState({ removeAssetType: type, removeAssetLabel: label }, this.reportState);
+    this.setState({ removeAssetType: type, removeAssetLabel: label }, this.reportState(this.state));
   };
   removeAsset = () => {
     const type = this.state.removeAssetType;
@@ -89,8 +89,7 @@ class Gameplay extends Component {
     const { tracking } = this.state;
     const newTracking = { ...tracking };
 
-    newTracking[playerID][label] =
-      (newTracking[playerID][label] + 1) % this.noteValues.length;
+    newTracking[playerID][label] = ((newTracking[playerID][label] || 0) + 1) % this.noteValues.length;
     this.setState({ tracking: newTracking }, this.reportState(this.state));
   };
   populateRowsOfType(type) {
@@ -138,7 +137,7 @@ class Gameplay extends Component {
         const playerID = this.state.players[j].id;
         row.push(
           <Cell
-            value={tracking[playerID][label]}
+            value={tracking[playerID][label] || 0}
             updateValue={this.updateValue}
             playerID={playerID}
             label={label}
@@ -168,6 +167,8 @@ class Gameplay extends Component {
   }
   render() {
     console.log(localStorage.getItem("CLUE_STATE"))
+    console.log('this.state')
+    console.log(this.state)
     const { players, version } = this.state;
     const playerNames = players.map(player => player.name);
     const MDActive = version === 'MD' ? 'active' : '';
