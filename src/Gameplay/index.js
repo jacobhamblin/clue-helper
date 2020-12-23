@@ -56,14 +56,21 @@ class Gameplay extends Component {
   customSuspects = [];
   customWeapons = [];
   customRooms = [];
+  confirmReset = () => {
+    const newState = { ...this.state, resetting: true };
+    this.setState(newState, this.reportState(newState));
+  };
   newAssetModal = (type) => {
-    this.setState({ editingAnAsset: type }, this.reportState(this.state));
+    const newState = { ...this.state, editingAnAsset: type };
+    this.setState(newState, this.reportState(newState));
   };
   removeAssetModal = (type, label) => {
-    this.setState(
-      { removeAssetType: type, removeAssetLabel: label },
-      this.reportState(this.state)
-    );
+    const newState = {
+      ...this.state,
+      removeAssetType: type,
+      removeAssetLabel: label,
+    };
+    this.setState(newState, this.reportState(newState));
   };
   removeAsset = () => {
     const type = this.state.removeAssetType;
@@ -78,13 +85,12 @@ class Gameplay extends Component {
         (value) => value !== label
       );
     });
-    this.setState(
-      {
-        removeAssetType: "",
-        removeAssetLabel: "",
-      },
-      this.reportState(this.state)
-    );
+    const newState = {
+      ...this.state,
+      removeAssetType: "",
+      removeAssetLabel: "",
+    };
+    this.setState(newState, this.reportState(newState));
   };
   noteValues = [0, 1, 2, 3, 4];
   returnToSetup = () => {
@@ -97,7 +103,8 @@ class Gameplay extends Component {
 
     newTracking[playerID][label] =
       ((newTracking[playerID][label] || 0) + 1) % this.noteValues.length;
-    this.setState({ tracking: newTracking }, this.reportState(this.state));
+    const newState = { ...this.state, tracking: newTracking };
+    this.setState(newState, this.reportState(newState));
   };
   populateRowsOfType(type) {
     const { tracking, version } = this.state;
@@ -165,29 +172,34 @@ class Gameplay extends Component {
     this["custom" + this.state.editingAnAsset] = this[
       "custom" + this.state.editingAnAsset
     ].concat([this.state.newAsset]);
-    this.setState(
-      {
-        editingAnAsset: false,
-        newAsset: "",
-      },
-      this.reportState(this.state)
-    );
+    const newState = {
+      ...this.state,
+      editingAnAsset: false,
+      newAsset: "",
+    };
+    this.setState(newState, this.reportState(newState));
   };
   toggleVersion = () => {
     const version = this.state.version === "MD" ? "classic" : "MD";
-    this.setState({ version }, this.reportState(this.state));
+    const newState = { ...this.state, version };
+    this.setState(newState, this.reportState(newState));
   };
   render() {
     const { players, version } = this.state;
     const playerNames = players.map((player) => player.name);
     const MDActive = version === "MD" ? "active" : "";
     const modalActive =
-      this.state.editingAnAsset || this.state.removeAssetLabel ? "active" : "";
+      this.state.editingAnAsset ||
+      this.state.removeAssetLabel ||
+      this.state.resetting
+        ? "active"
+        : "";
     const editingAsset =
       this.state.editingAnAsset &&
       this.state.editingAnAsset.substr(0, this.state.editingAnAsset.length - 1);
     const newAssetVisible = this.state.editingAnAsset ? "active" : "";
     const removeAssetVisible = this.state.removeAssetLabel ? "active" : "";
+    const resetVisible = this.state.resetting ? "active" : "";
     const removeAsset =
       this.state.removeAssetType &&
       this.state.removeAssetType.substr(
@@ -213,6 +225,14 @@ class Gameplay extends Component {
           >
             Setup
           </div>
+          <div
+            className={`reset-state`}
+            onClick={() => {
+              this.confirmReset();
+            }}
+          >
+            Reset
+          </div>
         </div>
         <table className="tracker">
           <tbody>
@@ -228,14 +248,13 @@ class Gameplay extends Component {
           className={`modalBackground ${modalActive}`}
           onClick={(e) => {
             if (!this.modalContents.contains(e.target)) {
-              this.setState(
-                {
-                  editingAnAsset: false,
-                  removeAssetLabel: "",
-                  removeAssetType: "",
-                },
-                this.reportState(this.state)
-              );
+              const newState = {
+                ...this.state,
+                editingAnAsset: false,
+                removeAssetLabel: "",
+                removeAssetType: "",
+              };
+              this.setState(newState, this.reportState(newState));
             }
           }}
         >
@@ -249,7 +268,11 @@ class Gameplay extends Component {
                 <input
                   type="text"
                   onChange={(e) => {
-                    this.setState({ newAsset: e.target.value });
+                    const newState = {
+                      ...this.state,
+                      newAsset: e.target.value,
+                    };
+                    this.setState(newState, this.reportState(newState));
                   }}
                   value={this.state.newAsset}
                   onKeyPress={(e) => {
@@ -270,13 +293,29 @@ class Gameplay extends Component {
                 <div
                   className="submit"
                   onClick={() => {
-                    this.setState(
-                      {
-                        removeAssetLabel: "",
-                        removeAssetType: "",
-                      },
-                      this.reportState(this.state)
-                    );
+                    const newState = {
+                      ...this.state,
+                      removeAssetLabel: "",
+                      removeAssetType: "",
+                    };
+                    this.setState(newState, this.reportState(newState));
+                  }}
+                >
+                  No
+                </div>
+              </div>
+            </div>
+            <div className={`resetGame ${resetVisible}`}>
+              <h4>Are you sure you want to reset?</h4>
+              <div className="inputContainer">
+                <div className="submit" onClick={this.props.resetState}>
+                  Yes
+                </div>
+                <div
+                  className="submit"
+                  onClick={() => {
+                    const newState = { ...this.state, resetting: false };
+                    this.setState(newState, this.reportState(newState));
                   }}
                 >
                   No
