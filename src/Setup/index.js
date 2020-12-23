@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import './Setup.css';
+import React, { Component } from "react";
+import "./Setup.css";
 
 class Setup extends Component {
   reportState = this.props.reportState;
   state = this.props.state || {
     id: 0,
-    newPlayerName: '',
+    newPlayerName: "",
     players: [],
     play: false,
   };
@@ -13,21 +13,22 @@ class Setup extends Component {
     this.props.reportState(this.state);
     this.props.enterGame();
   };
-  removePlayer = id => {
+  removePlayer = (id) => {
     const { players } = this.state;
-    this.setState({ players: players.filter(player => player.id !== id) });
+    this.setState({ players: players.filter((player) => player.id !== id) });
   };
   getPlayersList = () => {
     return (
       <ul className="players-list">
-        {this.state.players.map(player => {
+        {this.state.players.map((player) => {
           return (
             <li>
               <span>{player.name}</span>
               <button
                 onClick={() => {
                   this.removePlayer(player.id);
-                }}>
+                }}
+              >
                 x
               </button>
             </li>
@@ -40,21 +41,18 @@ class Setup extends Component {
     const { id, newPlayerName, players } = this.state;
     this.setState({
       players: [...players, { id, name: newPlayerName }],
-      newPlayerName: '',
+      newPlayerName: "",
       id: id + 1,
     });
   };
   render() {
-    const play = this.state.players.length
-      ? (
-        <div className="play" onClick={() => this.enterGame()}>
-          Play
-        </div>
-      ) : (
-        <div className="play disabled">
-          Play
-        </div>
-      );
+    const play = this.state.players.length ? (
+      <div className="play" onClick={() => this.enterGame()}>
+        Play
+      </div>
+    ) : (
+      <div className="play disabled">Play</div>
+    );
 
     return (
       <div className="Setup offset-md-3 col-md-6 col-xs-12">
@@ -62,15 +60,16 @@ class Setup extends Component {
           <input
             className="player-name"
             placeholder="player name"
-            onChange={e => this.setState({ newPlayerName: e.target.value })}
-            onKeyPress={e => {
-              if (e.key === 'Enter') this.submitPlayer();
+            onChange={(e) => this.setState({ newPlayerName: e.target.value })}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") this.submitPlayer();
             }}
             value={this.state.newPlayerName}
           />
           <button
             className="new-player-submit"
-            onClick={() => this.submitPlayer()}>
+            onClick={() => this.submitPlayer()}
+          >
             Save Player
           </button>
         </div>
