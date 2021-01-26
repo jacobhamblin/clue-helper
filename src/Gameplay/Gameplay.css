@@ -143,6 +143,14 @@
   display: block;
 }
 
+.Game .modalBackground .modalContents .resetGame {
+  display: none;
+}
+
+.Game .modalBackground .modalContents .resetGame.active {
+  display: block;
+}
+
 .Game .modalBackground .modalContents .inputContainer {
   display: flex;
   justify-content: center;

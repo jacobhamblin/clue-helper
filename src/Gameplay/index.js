@@ -269,6 +269,7 @@ class Gameplay extends Component {
                 editingAnAsset: false,
                 removeAssetLabel: "",
                 removeAssetType: "",
+                resetting: false,
               };
               this.setState(newState, this.reportState(newState));
             }
